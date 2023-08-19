@@ -1,0 +1,23 @@
+[2021-09-22 19:49:46,378] {scheduler_job.py:154} INFO - Started process (PID=2884) to work on /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:49:51,390] {scheduler_job.py:1562} INFO - Processing file /Users/admin/Desktop/airflow/dags/hello_world.py for tasks to queue
+[2021-09-22 19:49:51,391] {logging_mixin.py:112} INFO - [2021-09-22 19:49:51,391] {dagbag.py:396} INFO - Filling up the DagBag from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:49:51,400] {scheduler_job.py:1574} INFO - DAG(s) dict_keys(['hello_world']) retrieved from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:49:51,409] {logging_mixin.py:112} INFO - [2021-09-22 19:49:51,409] {dag.py:1501} INFO - Creating ORM DAG for hello_world
+[2021-09-22 19:49:51,423] {scheduler_job.py:162} INFO - Processing /Users/admin/Desktop/airflow/dags/hello_world.py took 5.045 seconds
+[2021-09-22 19:51:53,877] {scheduler_job.py:154} INFO - Started process (PID=2928) to work on /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:51:58,889] {scheduler_job.py:1562} INFO - Processing file /Users/admin/Desktop/airflow/dags/hello_world.py for tasks to queue
+[2021-09-22 19:51:58,890] {logging_mixin.py:112} INFO - [2021-09-22 19:51:58,890] {dagbag.py:396} INFO - Filling up the DagBag from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:51:58,899] {scheduler_job.py:1574} INFO - DAG(s) dict_keys(['hello_world']) retrieved from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:51:58,923] {scheduler_job.py:162} INFO - Processing /Users/admin/Desktop/airflow/dags/hello_world.py took 5.046 seconds
+[2021-09-22 19:54:01,567] {scheduler_job.py:154} INFO - Started process (PID=2963) to work on /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:54:06,577] {scheduler_job.py:1562} INFO - Processing file /Users/admin/Desktop/airflow/dags/hello_world.py for tasks to queue
+[2021-09-22 19:54:06,578] {logging_mixin.py:112} INFO - [2021-09-22 19:54:06,578] {dagbag.py:396} INFO - Filling up the DagBag from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:54:06,591] {scheduler_job.py:1574} INFO - DAG(s) dict_keys(['hello_world']) retrieved from /Users/admin/Desktop/airflow/dags/hello_world.py
+[2021-09-22 19:54:06,616] {scheduler_job.py:1284} INFO - Processing hello_world
+[2021-09-22 19:54:06,651] {scheduler_job.py:1294} INFO - Created <DagRun hello_world @ 2021-09-21 12:00:00+00:00: scheduled__2021-09-21T12:00:00+00:00, externally triggered: False>
+[2021-09-22 19:54:06,656] {scheduler_job.py:759} INFO - Examining DAG run <DagRun hello_world @ 2021-09-21 12:00:00+00:00: scheduled__2021-09-21T12:00:00+00:00, externally triggered: False>
+[2021-09-22 19:54:06,662] {scheduler_job.py:759} INFO - Examining DAG run <DagRun hello_world @ 2021-09-22 23:51:45.742266+00:00: manual__2021-09-22T23:51:45.742266+00:00, externally triggered: True>
+[2021-09-22 19:54:06,673] {scheduler_job.py:447} INFO - Skipping SLA check for <DAG: hello_world> because no tasks in DAG have SLAs
+[2021-09-22 19:54:06,676] {scheduler_job.py:1640} INFO - Creating / updating <TaskInstance: hello_world.hello_task 2021-09-21 12:00:00+00:00 [scheduled]> in ORM
+[2021-09-22 19:54:06,680] {scheduler_job.py:1640} INFO - Creating / updating <TaskInstance: hello_world.hello_task 2021-09-22 23:51:45.742266+00:00 [scheduled]> in ORM
+[2021-09-22 19:54:06,688] {scheduler_job.py:162} INFO - Processing /Users/admin/Desktop/airflow/dags/hello_world.py took 5.121 seconds
