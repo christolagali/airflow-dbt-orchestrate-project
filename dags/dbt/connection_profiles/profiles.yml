@@ -1,0 +1,25 @@
+default:
+  outputs:
+    dev:
+      account: <snowflake_account>
+      client_session_keep_alive: false
+      database: DBT_DB
+      password: <snowflake_password>
+      role: SYSADMIN
+      schema: ANALYTICS_SCHEMA
+      threads: 1
+      type: snowflake
+      user: <snowflake_user>
+      warehouse: COMPUTE_WH_XS
+    prod:
+      account: <snowflake_account>
+      client_session_keep_alive: false
+      database: DBT_DB
+      password: <snowflake_password>
+      role: SYSADMIN
+      schema: DEV
+      threads: 1
+      type: snowflake
+      user: <snowflake_user>
+      warehouse: COMPUTE_WH_XS
+  target: dev
