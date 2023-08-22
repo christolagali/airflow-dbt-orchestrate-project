@@ -1,0 +1,8 @@
+
+version: 2
+
+models:
+  - name: tpch_model
+    description: "A starter dbt model"
+  - name: tpch_execution_modes
+    description: "A starter dbt model for execution modes"
