@@ -1,0 +1,6 @@
+{
+"dag_id":"run_first_dbt_project",
+"description": "DBT Execution Mode DAG",
+"schedule_interval":"0 12 * * *",
+"catchup":"False"
+}
