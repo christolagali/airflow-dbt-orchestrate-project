@@ -22,7 +22,7 @@ start_dummy_operator = DummyOperator(task_id='start', dag=dag)
 
 execute_dbt_model = BashOperator(
                  task_id='dbt_run_execution_mode',
-                 bash_command="""dbt run --profiles-dir {DBT_CONNECTION_PATH} --project-dir {DBT_PROJECT_PATH} --select tpch_execution_modes --vars '{execution_mode: partial, refresh_year: 1993 }' """
+                 bash_command=f"""dbt run --profiles-dir {DBT_CONNECTION_PATH} --project-dir {DBT_PROJECT_PATH} --select tpch_execution_modes --vars '{{execution_mode: partial, refresh_year: 1993 }}' """
                  )
 
 end_dummy_operator = DummyOperator(task_id='end', dag=dag)
