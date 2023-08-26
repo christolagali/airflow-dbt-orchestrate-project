@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: TPCH_SF100
+  - name: TPCH_SF1
     database: SNOWFLAKE_SAMPLE_DATA
     tables:
       - name: CUSTOMER

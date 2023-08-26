@@ -1,0 +1,6 @@
+
+version: 2
+
+models:
+  - name: TPCH_WORM_MODEL
+    description: "A DBT model to illustrate the creation and use of a WORM model"
