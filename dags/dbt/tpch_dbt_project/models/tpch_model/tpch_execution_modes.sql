@@ -7,41 +7,37 @@
   {{
     config(
       materialized = "incremental",
-      pre_hook="delete from {{this}} where period={{ var('refresh_year') }} and O_ORDERPRIORITY in ('1-URGENT','2-HIGH')"
+      pre_hook="delete from {{this}} where period={{ var('refresh_year') }} and Market_Segment in ('MACHINERY','AUTOMOBILE')"
     )
   }}
 
   with raw_data as(
     select
-        year(cust_order.o_orderdate) as period,
-        cust.c_name,
-        cust.c_mktsegment,
-        cust_order.o_orderstatus,
-        cust_order.o_orderpriority,
-        sum(O_TOTALPRICE) as total_price,
+        year(orders.o_orderdate) as Period,
+        orders.O_CLERK as Clerk_ID,
+        cust.C_MKTSEGMENT as Market_Segment,
+        sum(lineitems.l_extendedprice * (1-lineitems.l_discount) * (1+lineitems.l_tax)) as Amount_Sold,
         current_timestamp() as data_refresh_timestamp
-    from {{ source('TPCH_SF100','ORDERS') }} cust_order
+    from {{ source('TPCH_SF100','LINEITEM') }} lineitems
+    left join {{ source('TPCH_SF100','ORDERS') }} orders
+        on lineitems.L_ORDERKEY = orders.o_orderkey
     left join {{ source('TPCH_SF100','CUSTOMER') }} cust
-        on cust_order.o_custkey = cust.c_custkey
-    where year(cust_order.o_orderdate) = '{{ var("refresh_year") }}'
-    and cust_order.o_orderpriority in (
-        '1-URGENT',
-        '2-HIGH'
+        on orders.o_custkey = cust.c_custkey
+    where year(orders.o_orderdate) = '{{ var("refresh_year") }}'
+    and cust.C_MKTSEGMENT in (
+      'MACHINERY',
+      'AUTOMOBILE'
   )
-  group by
-    period,
-    c_name,
-    c_mktsegment,
-    o_orderstatus,
-    o_orderpriority
+    group by
+      Period,
+      Clerk_ID,
+      Market_Segment
   )
   select
-    to_varchar(period) as period,
-    c_name,
-    c_mktsegment,
-    o_orderstatus,
-    o_orderpriority,
-    total_price,
+    Period,
+    Clerk_ID,
+    Market_Segment,
+    Amount_Sold,
     data_refresh_timestamp
   from raw_data
 
@@ -55,44 +51,40 @@
   {{
     config(
       materialized = "incremental",
-      pre_hook="delete from {{this}} where period={{ var('refresh_year') }} and O_ORDERPRIORITY in ('1-URGENT','2-HIGH','3-MEDIUM','4-NOT SPECIFIED','5-LOW')"
+      pre_hook="delete from {{this}} where period={{ var('refresh_year') }} and Market_Segment in ('MACHINERY','AUTOMOBILE','FURNITURE','HOUSEHOLD','BUILDING')"
     )
   }}
 
   with raw_data as(
     select
-        year(cust_order.o_orderdate) as period,
-        cust.c_name,
-        cust.c_mktsegment,
-        cust_order.o_orderstatus,
-        cust_order.o_orderpriority,
-        sum(O_TOTALPRICE) as total_price,
+        year(orders.o_orderdate) as Period,
+        orders.O_CLERK as Clerk_ID,
+        cust.C_MKTSEGMENT as Market_Segment,
+        sum(lineitems.l_extendedprice * (1-lineitems.l_discount) * (1+lineitems.l_tax)) as Amount_Sold,
         current_timestamp() as data_refresh_timestamp
-    from {{ source('TPCH_SF100','ORDERS') }} cust_order
+    from {{ source('TPCH_SF100','LINEITEM') }} lineitems
+    left join {{ source('TPCH_SF100','ORDERS') }} orders
+        on lineitems.L_ORDERKEY = orders.o_orderkey
     left join {{ source('TPCH_SF100','CUSTOMER') }} cust
-        on cust_order.o_custkey = cust.c_custkey
-    where year(cust_order.o_orderdate) = '{{ var("refresh_year") }}'
-    and cust_order.o_orderpriority in (
-        '1-URGENT',
-        '2-HIGH',
-        '3-MEDIUM',
-        '4-NOT SPECIFIED',
-        '5-LOW'
+        on orders.o_custkey = cust.c_custkey
+    where year(orders.o_orderdate) = '{{ var("refresh_year") }}'
+    and cust.C_MKTSEGMENT in (
+      'MACHINERY',
+      'AUTOMOBILE',
+      'FURNITURE',
+      'HOUSEHOLD',
+      'BUILDING'
   )
-  group by
-    period,
-    c_name,
-    c_mktsegment,
-    o_orderstatus,
-    o_orderpriority
+    group by
+      Period,
+      Clerk_ID,
+      Market_Segment
   )
   select
-    to_varchar(period) as period,
-    c_name,
-    c_mktsegment,
-    o_orderstatus,
-    o_orderpriority,
-    total_price,
+    Period,
+    Clerk_ID,
+    Market_Segment,
+    Amount_Sold,
     data_refresh_timestamp
   from raw_data
 
