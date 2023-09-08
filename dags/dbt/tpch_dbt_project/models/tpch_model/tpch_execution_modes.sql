@@ -1,4 +1,4 @@
-{% if var('execution_mode') == 'partial' %}
+{% if var('execution_mode') == 'partial_refresh' %}
 
 /*
 *  Partial Refresh

@@ -27,7 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Variables for DBT Project
 vars:
   # Variable to choose which mode to use
-  execution_mode: 'complete'
+  execution_mode: 'complete_refresh'
 
   # Variable to pass the year value
   refresh_year: '1992'
