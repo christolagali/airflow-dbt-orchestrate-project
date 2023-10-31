@@ -1,0 +1,7 @@
+{
+  "dag_id":"tpch_dbt_worm_model_dag",
+  "description": "DBT DAG to trigger the WORM model",
+  "schedule_interval":"0 12 * * *",
+  "catchup":"False",
+  "action":"read"
+}
