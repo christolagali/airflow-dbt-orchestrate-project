@@ -1,7 +1,7 @@
 {{
   config(
     materialized = "incremental",
-    pre_hook="delete from {{this}} where period='1994'"
+    pre_hook="delete from {{this}} where period='1994' and date(data_refresh_timestamp) = TO_DATE('{{ var('refresh_date') }}')"
   )
 }}
 
@@ -15,7 +15,7 @@ with raw_data as(
   from {{ source('TPCH_SF1','LINEITEM') }} lineitems
   left join {{ source('TPCH_SF1','ORDERS') }} orders
       on lineitems.L_ORDERKEY = orders.o_orderkey
-  left join {{ ref('CUSTOMER_SNAPSHOT') }} cust
+  inner join {{ ref('CUSTOMER_SNAPSHOT') }} cust
       on orders.o_custkey = cust.c_custkey
   where year(orders.o_orderdate) = '1994'
       and cust.snapshot_date = '{{ var('refresh_date') }}'
