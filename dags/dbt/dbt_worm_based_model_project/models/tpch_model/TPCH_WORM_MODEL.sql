@@ -1,7 +1,7 @@
 {{
   config(
     materialized = "incremental",
-    pre_hook="delete from {{this}} where period='1994'"
+    pre_hook="delete from {{this}} where period='1994' and date(data_refresh_timestamp) = TO_DATE('{{ var('refresh_date') }}')"
   )
 }}
 
